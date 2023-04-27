@@ -37,10 +37,16 @@ public class ProductController : ControllerBase
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
-
         };
         await this.productDomain.AddAsync(productToAdd);
 
         return this.Ok(productToAdd);
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult> RemoveAsync(int id)
+    {
+        await this.productDomain.RemoveAsync(id);
+        return this.Ok();
     }
 }

@@ -19,7 +19,6 @@ public class ProductRepository : IProductRepository
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
-
         };
         await this.storeContext.Products.AddAsync(productToAdd);
         await this.storeContext.SaveChangesAsync();
@@ -37,5 +36,12 @@ public class ProductRepository : IProductRepository
         });
 
         return productsToGet;
+    }
+
+    public async Task RemoveAsync(int id)
+    {
+        var productToRemove = new Database.Models.Product { Id = id };
+        this.storeContext.Remove(productToRemove);
+        await this.storeContext.SaveChangesAsync();
     }
 }
