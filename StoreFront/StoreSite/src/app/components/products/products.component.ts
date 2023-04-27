@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
-import { HttpClient } from '@angular/common/http';
+import { Product, ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -10,31 +9,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsComponent {
   listProduct: any;
+  pages: number = 1;
 
+  constructor(private productService: ProductsService) {}
   newProduct: Product = {
     id: 0,
     name: 'newProductName',
     description: 'newDescriptionName',
   };
 
-  addProductParent() {
-    this.addProduct(this.newProduct);
+  addProduct() {
+    this.productService.addProduct(this.newProduct);
   }
 
-  private apiProductUrl = 'https://localhost:7007/Product';
-
-  constructor(private http: HttpClient) {}
-
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiProductUrl);
-  }
-
-  addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiProductUrl, product);
-  }
-
-  removeProduct(productId: number): Observable<any> {
-    return this.http.delete(`${this.apiProductUrl}/Remove?id=${productId}`);
+  removeProduct(id: number) {
+    this.productService.removeProduct(id);
   }
 
   async ngOnInit() {
@@ -43,14 +32,6 @@ export class ProductsComponent {
     console.log(data);
     this.listProduct = data;
   }
-
-  // remove(productId: number) {
-  //   fetch(`https://localhost:7007/Product/Remove?id=${productId}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.error(err));
-  // }
 
   onSubmit(form: NgForm) {
     console.log(form);
@@ -61,11 +42,3 @@ export class ProductsComponent {
 async function GetAll() {
   return await fetch('https://localhost:7007/Product/GetAll');
 }
-
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-}
-
-export class ProductService {}

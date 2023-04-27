@@ -1,12 +1,19 @@
 <h2>Liste:</h2>
 <ul>
-  <li *ngFor="let product of this.listProduct">
+  <li
+    *ngFor="
+      let product of this.listProduct
+        | paginate : { itemsPerPage: 3, currentPage: pages }
+    "
+  >
     {{ product.id }}
     {{ product.name }}
     {{ product.description }}
     <button (click)="removeProduct(product.id)">Supprimer</button>
   </li>
 </ul>
+<!-- npm install ngx-pagination -->
+<pagination-controls (pageChange)="pages = $event"></pagination-controls>
 
 <h2>Tableau:</h2>
 <table>
@@ -35,7 +42,7 @@
   <button type="submit">Créer</button>
 </form>
 
-<form (submit)="addProductParent()">
+<form (submit)="addProduct()">
   <label>
     Nom :
     <input type="text" [(ngModel)]="newProduct.name" name="name" />
