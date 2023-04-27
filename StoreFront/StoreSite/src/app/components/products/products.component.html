@@ -9,7 +9,9 @@
     {{ product.id }}
     {{ product.name }}
     {{ product.description }}
-    <button (click)="removeProduct(product.id)">Supprimer</button>
+    <button (click)="removeProduct(product.id)">Supprimer</button> 
+    <button (click)="editProduct(product.id)">Modifier</button> 
+    <button (click)="detailsProduct(product.id)">Details</button>
   </li>
 </ul>
 <!-- npm install ngx-pagination -->

@@ -26,6 +26,12 @@ export class ProductsComponent {
     this.productService.removeProduct(id);
   }
 
+  editProduct(id: number) {
+  }
+
+  detailsProduct(id: number) {
+  }
+
   async ngOnInit() {
     const response = await GetAll();
     const data = await response.json();
