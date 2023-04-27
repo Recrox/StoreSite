@@ -24,6 +24,7 @@ public class ProductController : ControllerBase
             Id = p.Id,
             Name = p.Name,
             Description = p.Description,
+            ImageUrl= p.ImageUrl,
         });
 
         return this.Ok(products);
@@ -48,5 +49,16 @@ public class ProductController : ControllerBase
     {
         await this.productDomain.RemoveAsync(id);
         return this.Ok();
+    }
+
+    [HttpGet]
+    public IActionResult GetImage()
+    {
+        //string imagePath = Path.Combine("Images", "i102005-chocolat-nu.webp"); // chemin d'accès à l'image
+        string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "Database", "Images", "i102005-chocolat-nu.webp");
+
+        byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath); // lit les octets de l'image
+        var file = File(imageBytes, "image/webp");// renvoie l'image en tant que réponse HTTP
+        return this.Ok(file);
     }
 }
