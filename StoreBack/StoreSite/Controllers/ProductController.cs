@@ -19,15 +19,15 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<IEnumerable<Product>>> GetAllAsync()
     {
         var products = await productDomain.GetAllAsync();
-        var productToGet = products.Select(p => new Core.Models.Product
+        var productToGet = products.Select(p => new Product
         {
             Id = p.Id,
             Name = p.Name,
             Description = p.Description,
-            ImageUrl= p.ImageUrl,
+            ImageUrl = p.ImageUrl,
         });
 
-        return this.Ok(products);
+        return this.Ok(productToGet);
     }
 
     [HttpPost]

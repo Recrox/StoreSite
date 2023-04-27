@@ -1,13 +1,14 @@
-<h2>Liste</h2>
+<h2>Liste:</h2>
 <ul>
   <li *ngFor="let product of this.listProduct">
     {{ product.id }}
     {{ product.name }}
     {{ product.description }}
+    <button (click)="removeProduct(product.id)">Supprimer</button>
   </li>
 </ul>
 
-<h2>Tableau</h2>
+<h2>Tableau:</h2>
 <table>
   <thead>
     <tr>
@@ -24,3 +25,30 @@
     </tr>
   </tbody>
 </table>
+
+<h2>Formulaire:</h2>
+<form onsubmit="onSubmit()">
+  <label for="name">name</label>
+  <input type="text" />
+  <label for="description">description</label>
+  <input type="text" />
+  <button type="submit">Créer</button>
+</form>
+
+<form (submit)="addProductParent()">
+  <label>
+    Nom :
+    <input type="text" [(ngModel)]="newProduct.name" name="name" />
+  </label>
+  <br />
+  <label>
+    Description :
+    <input
+      type="text"
+      [(ngModel)]="newProduct.description"
+      name="description"
+    />
+  </label>
+  <br />
+  <button type="submit">Ajouter</button>
+</form>

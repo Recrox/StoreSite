@@ -17,4 +17,7 @@ export class ImageComponent {
   //       reader.readAsDataURL(response);
   //     });
   // }
+
+  imgUrl =
+    'https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/fiches-cuisine/tous-les-themes/recettes-de-desserts-au-chocolat/88701296-2-fre-FR/Recettes-de-desserts-au-chocolat.jpg';
 }

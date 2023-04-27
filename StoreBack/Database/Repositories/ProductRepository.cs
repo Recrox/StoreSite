@@ -45,9 +45,4 @@ public class ProductRepository : IProductRepository
         this.storeContext.Remove(productToRemove);
         await this.storeContext.SaveChangesAsync();
     }
-
-    //public void GetImage()
-    //{
-    //    product.ImageUrl = imageName; // enregistre l'URL de l'image dans la propriété ImageUrl de la classe Product
-    //}
 }
