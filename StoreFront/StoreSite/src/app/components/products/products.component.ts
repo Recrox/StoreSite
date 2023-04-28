@@ -8,7 +8,7 @@ import { Product, ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  listProduct: any;
+  listProduct: Product[] = [];
   pages: number = 1;
 
   constructor(private productService: ProductsService) {}
@@ -24,13 +24,12 @@ export class ProductsComponent {
 
   removeProduct(id: number) {
     this.productService.removeProduct(id);
+    this.listProduct = this.listProduct.filter((p) => p.id !== id);
   }
 
-  editProduct(id: number) {
-  }
+  editProduct(id: number) {}
 
-  detailsProduct(id: number) {
-  }
+  detailsProduct(id: number) {}
 
   async ngOnInit() {
     const response = await GetAll();
@@ -41,7 +40,8 @@ export class ProductsComponent {
 
   onSubmit(form: NgForm) {
     console.log(form);
-    console.log('yo');
+    console.log('yo la form?');
+    this.addProduct();
   }
 }
 

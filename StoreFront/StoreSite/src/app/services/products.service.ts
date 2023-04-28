@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,21 +15,17 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetAll`);
   }
 
-  getPrloducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('');
-  }
-
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiProductUrl, product);
   }
 
-  removeProduct(productId: number) {
-    return this.http
-      .delete(`${this.apiProductUrl}/Remove?id=${productId}`)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+  removeProduct(productId: number, listProduct: Product[]) {
+    this.http.delete(`${this.apiProductUrl}/Remove?id=${productId}`).pipe(
+      tap(() => {
+        // Mettre à jour la liste des produits après la suppression
+        this.getListProduct();
+      })
+    );
   }
 }
 

@@ -9,8 +9,8 @@
     {{ product.id }}
     {{ product.name }}
     {{ product.description }}
-    <button (click)="removeProduct(product.id)">Supprimer</button> 
-    <button (click)="editProduct(product.id)">Modifier</button> 
+    <button (click)="removeProduct(product.id)">Supprimer</button>
+    <button (click)="editProduct(product.id)">Modifier</button>
     <button (click)="detailsProduct(product.id)">Details</button>
   </li>
 </ul>
@@ -27,8 +27,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of this.listProduct | paginate : 
-    { itemsPerPage: 4, currentPage: pages }">
+    <tr
+      *ngFor="
+        let product of this.listProduct
+          | paginate : { itemsPerPage: 4, currentPage: pages }
+      "
+    >
       <td>{{ product.id }}</td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
