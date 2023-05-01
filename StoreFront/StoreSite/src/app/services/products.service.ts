@@ -23,7 +23,7 @@ export class ProductsService {
     this.http.delete(`${this.apiProductUrl}/Remove?id=${productId}`).pipe(
       tap(() => {
         // Mettre à jour la liste des produits après la suppression
-        this.getListProduct();
+        // listProduct = listProduct.filter(product=>product.id !== productId)
       })
     );
   }

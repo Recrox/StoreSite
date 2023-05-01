@@ -23,7 +23,7 @@ export class ProductsComponent {
   }
 
   removeProduct(id: number) {
-    this.productService.removeProduct(id);
+    this.productService.removeProduct(id,this.listProduct);
     this.listProduct = this.listProduct.filter((p) => p.id !== id);
   }
 

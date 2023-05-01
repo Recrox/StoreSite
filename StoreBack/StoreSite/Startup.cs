@@ -25,6 +25,8 @@ public class Startup
         services.AddTransient<IProductDomain, ProductDomain>();
         services.AddTransient<IProductRepository, ProductRepository>();
 
+        services.AddTransient<IOrderDomain, OrderDomain>();
+
         services.AddDbContext<StoreContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Database"), b => b.MigrationsAssembly("StoreSite")));
 
