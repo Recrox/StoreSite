@@ -9,6 +9,4 @@ public class Product
 
     public string? Description { get; set; }
     public string? ImageUrl { get; set; }
-
-    public ICollection<OrderProduct>? OrderProducts { get; set; }
 }

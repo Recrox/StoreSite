@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StoreSite.Controllers;
-[Authorize]
+
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase

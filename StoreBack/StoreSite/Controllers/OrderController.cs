@@ -45,4 +45,11 @@ public class OrderController : ControllerBase
 
         return this.Ok(orderToAdd);
     }
+
+    [HttpDelete]
+    public async Task<ActionResult> RemoveAsync(int id)
+    {
+        await this.orderDomain.RemoveAsync(id);
+        return this.Ok();
+    }
 }

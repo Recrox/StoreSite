@@ -14,13 +14,13 @@ public class OrderRepository : IOrderRepository
 
     public async Task AddAsync(Order order)
     {
-        var orderToAdd = new Order
+        var orderToAdd = new Database.Models.Order
         {
             Id = order.Id,
             OrderDate = order.OrderDate,
             TotalPrice = order.TotalPrice,
         };
-        await storeContext.AddAsync(orderToAdd);
+        await storeContext.Orders.AddAsync(orderToAdd);
         await this.storeContext.SaveChangesAsync();
     }
 
@@ -38,8 +38,10 @@ public class OrderRepository : IOrderRepository
         return ordersToGet;
     }
 
-    public Task RemoveAsync(int id)
+    public async Task RemoveAsync(int id)
     {
-        throw new NotImplementedException();
+        var orderToRemove = new Database.Models.Order { Id = id };
+        this.storeContext.Remove(orderToRemove);
+        await this.storeContext.SaveChangesAsync();
     }
 }

@@ -8,19 +8,17 @@ namespace StoreSite;
 
 public class Startup
 {
+    public IConfiguration Configuration { get; }
+
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
     }
 
-    public IConfiguration Configuration { get; }
-
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-
-        //ConfigJWT(services);
 
         services.AddTransient<IProductDomain, ProductDomain>();
         services.AddTransient<IProductRepository, ProductRepository>();
@@ -45,6 +43,15 @@ public class Startup
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "VotreApplication", Version = "v1" });
         });
+
+        //ConfigJWT(services);
+
+        //services.AddAutoMapper(config =>
+        //{
+        //    config.CreateMap<WeatherForecastSuchParam, Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam>().ReverseMap();
+        //    config.CreateMap<Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam, Technocite.Irm.Weather.Core.Models.WeatherForecastSuchParam>();
+
+        //});
     }
 
     //private void ConfigJWT(IServiceCollection services)
