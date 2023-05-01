@@ -6,6 +6,8 @@ namespace Database;
 public class StoreContext : DbContext
 {
     public DbSet<Product> Products { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderProduct> OrderProducts { get; set; }
 
     public StoreContext(DbContextOptions options) : base(options)
     {

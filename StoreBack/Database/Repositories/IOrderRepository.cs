@@ -1,8 +1,8 @@
-using Core.Models;
+﻿using Core.Models;
 
-namespace Business.Domains;
+namespace Database.Repositories;
 
-public interface IOrderDomain
+public interface IOrderRepository
 {
     Task<IEnumerable<Order>> GetAllAsync();
 
