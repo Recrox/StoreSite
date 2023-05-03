@@ -1,8 +1,11 @@
 ﻿using Business.Domains;
 using Database;
 using Database.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace StoreSite;
 
@@ -47,7 +50,7 @@ public class Startup
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "VotreApplication", Version = "v1" });
         });
 
-        //ConfigJWT(services);
+        ConfigJWT(services);
 
         //services.AddAutoMapper(config =>
         //{
@@ -57,27 +60,27 @@ public class Startup
         //});
     }
 
-    //private void ConfigJWT(IServiceCollection services)
-    //{
-    //    // Récupération de la clé secrète depuis la configuration
-    //    string secretKey = Configuration["Jwt:SecretKey"];
+    private void ConfigJWT(IServiceCollection services)
+    {
+        // Récupération de la clé secrète depuis la configuration
+        string secretKey = Configuration["Jwt:SecretKey"];
 
-    //    // Ajout du middleware d'authentification JWT
-    //    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    //        .AddJwtBearer(options =>
-    //        {
-    //            options.TokenValidationParameters = new TokenValidationParameters
-    //            {
-    //                ValidateIssuer = true,
-    //                ValidateAudience = true,
-    //                ValidateLifetime = true,
-    //                ValidateIssuerSigningKey = true,
-    //                ValidIssuer = "mon_site_web.com",
-    //                ValidAudience = "mon_app_client",
-    //                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
-    //            };
-    //        });
-    //}
+        // Ajout du middleware d'authentification JWT
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
+                };
+            });
+    }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
@@ -97,6 +100,7 @@ public class Startup
         app.UseCors();
 
         app.UseAuthorization();
+        app.UseAuthentication();
 
         app.UseEndpoints(endpoints =>
         {

@@ -1,4 +1,5 @@
 ﻿using Business.Domains;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreSite.Models;
 
@@ -15,6 +16,7 @@ public class ProductController : ControllerBase
         this.productDomain = productDomain;
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetAllAsync()
     {

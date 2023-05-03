@@ -22,7 +22,7 @@ public class OrderProductController : ControllerBase
     {
         var ordersProducts = await this.orderProductDomain.GetAllAsync();
 
-        var ordersProdutcToGet = ordersProducts.Select(op => new OrderProduct
+        var ordersProdutcToGet = ordersProducts.Select(op => new StoreSite.Models.OrderProduct
         {
             OrderId = op.OrderId,
             ProductId = op.ProductId,
