@@ -1,14 +1,17 @@
 nav {
     font-size: 1.9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         list-style-type: none;
 
-        a {
-            text-decoration: none;
+        li {
+            a {
+                text-decoration: none;
+            }
         }
+
     }
 }
