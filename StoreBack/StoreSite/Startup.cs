@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using StoreSite.ViewModels;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
@@ -57,8 +58,7 @@ public class Startup
 
         services.AddAutoMapper(config =>
         {
-            config.CreateMap<WeatherForecastSuchParam, Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam>().ReverseMap();
-            config.CreateMap<Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam, Technocite.Irm.Weather.Core.Models.WeatherForecastSuchParam>();
+            config.CreateMap<Product, Core.Models.Product>().ReverseMap();
         });
     }
 
