@@ -1,6 +1,8 @@
 <div class="container">
-  <h1>{{ title }}</h1>
+  <app-header></app-header>
 
-  <app-products></app-products>
-  <app-image></app-image>
+  <h1>{{ title }}</h1>
+  <router-outlet></router-outlet>
+  
+  <app-footer></app-footer>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import Product from '../models/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +30,4 @@ export class ProductsService {
   }
 }
 
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-}
+

@@ -1,0 +1,14 @@
+nav {
+    font-size: 1.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+        list-style-type: none;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Product, ProductsService } from 'src/app/services/products.service';
+import Product from 'src/app/models/Product';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,8 @@ import { Product, ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent {
   listProduct: Product[] = [];
-  pages: number = 1;
+  pagesListe: number = 1;
+  pagesTable: number = 1;
 
   constructor(private productService: ProductsService) {}
   newProduct: Product = {
@@ -17,10 +19,6 @@ export class ProductsComponent {
     name: 'newProductName',
     description: 'newDescriptionName',
   };
-
-  addProduct() {
-    this.productService.addProduct(this.newProduct);
-  }
 
   removeProduct(id: number) {
     this.productService.removeProduct(id,this.listProduct);
@@ -36,12 +34,6 @@ export class ProductsComponent {
     const data = await response.json();
     console.log(data);
     this.listProduct = data;
-  }
-
-  onSubmit(form: NgForm) {
-    console.log(form);
-    console.log('yo la form?');
-    this.addProduct();
   }
 }
 

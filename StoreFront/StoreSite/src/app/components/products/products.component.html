@@ -3,7 +3,7 @@
   <li
     *ngFor="
       let product of this.listProduct
-        | paginate : { itemsPerPage: 4, currentPage: pages }
+        | paginate : { itemsPerPage: 4, currentPage: pagesListe }
     "
   >
     {{ product.id }}
@@ -15,7 +15,7 @@
   </li>
 </ul>
 <!-- npm install ngx-pagination -->
-<pagination-controls (pageChange)="pages = $event"></pagination-controls>
+<pagination-controls (pageChange)="pagesListe = $event"></pagination-controls>
 
 <h2>Tableau:</h2>
 <table>
@@ -30,7 +30,7 @@
     <tr
       *ngFor="
         let product of this.listProduct
-          | paginate : { itemsPerPage: 4, currentPage: pages }
+          | paginate : { itemsPerPage: 2, currentPage: pagesTable }
       "
     >
       <td>{{ product.id }}</td>
@@ -39,23 +39,4 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="pages = $event"></pagination-controls>
-
-<h2>Formulaire 1:</h2>
-<form (submit)="addProduct()">
-  <label>
-    Nom :
-    <input type="text" [(ngModel)]="newProduct.name" name="name" />
-  </label>
-  <br />
-  <label>
-    Description :
-    <input
-      type="text"
-      [(ngModel)]="newProduct.description"
-      name="description"
-    />
-  </label>
-  <br />
-  <button type="submit">Ajouter</button>
-</form>
+<pagination-controls (pageChange)="pagesTable = $event"></pagination-controls>
