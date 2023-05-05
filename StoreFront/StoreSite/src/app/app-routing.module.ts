@@ -5,6 +5,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: '', component:ProductsComponent},
   { path: 'products-component', component: ProductsComponent },
   { path: 'product-form-component', component: ProductFormComponent },
   { path: '**', component: PageNotFoundComponent }, 

@@ -1,42 +1,45 @@
-<h2>Liste:</h2>
-<ul>
-  <li
-    *ngFor="
-      let product of this.listProduct
-        | paginate : { itemsPerPage: 4, currentPage: pagesListe }
-    "
-  >
-    {{ product.id }}
-    {{ product.name }}
-    {{ product.description }}
-    <button (click)="removeProduct(product.id)">Supprimer</button>
-    <button (click)="editProduct(product.id)">Modifier</button>
-    <button (click)="detailsProduct(product.id)">Details</button>
-  </li>
-</ul>
-<!-- npm install ngx-pagination -->
-<pagination-controls (pageChange)="pagesListe = $event"></pagination-controls>
-
-<h2>Tableau:</h2>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
+<div class="container">
+  <h2>Liste:</h2>
+  <ul>
+    <li
       *ngFor="
         let product of this.listProduct
-          | paginate : { itemsPerPage: 2, currentPage: pagesTable }
+          | paginate : { itemsPerPage: 4, currentPage: pagesListe }
       "
     >
-      <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.description }}</td>
-    </tr>
-  </tbody>
-</table>
-<pagination-controls (pageChange)="pagesTable = $event"></pagination-controls>
+      {{ product.id }}
+      {{ product.name }}
+      {{ product.description }}
+      <button (click)="removeProduct(product.id)">Supprimer</button>
+      <button (click)="editProduct(product.id)">Modifier</button>
+      <button (click)="detailsProduct(product.id)">Details</button>
+    </li>
+  </ul>
+  <!-- npm install ngx-pagination -->
+  <pagination-controls (pageChange)="pagesListe = $event"></pagination-controls>
+
+  <h2>Tableau:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let product of this.listProduct
+            | paginate : { itemsPerPage: 2, currentPage: pagesTable }
+        "
+      >
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="pagesTable = $event"></pagination-controls>
+</div>
+
