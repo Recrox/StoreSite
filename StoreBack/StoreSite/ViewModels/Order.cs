@@ -1,4 +1,4 @@
-namespace StoreSite.Models;
+namespace StoreSite.ViewModels;
 
 public class Order
 {

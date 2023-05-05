@@ -2,7 +2,7 @@
 using Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StoreSite.Models;
+using StoreSite.ViewModels;
 
 namespace StoreSite.Controllers;
 
@@ -22,7 +22,7 @@ public class OrderProductController : ControllerBase
     {
         var ordersProducts = await this.orderProductDomain.GetAllAsync();
 
-        var ordersProdutcToGet = ordersProducts.Select(op => new StoreSite.Models.OrderProduct
+        var ordersProdutcToGet = ordersProducts.Select(op => new StoreSite.ViewModels.OrderProduct
         {
             OrderId = op.OrderId,
             ProductId = op.ProductId,

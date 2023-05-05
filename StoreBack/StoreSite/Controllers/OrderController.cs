@@ -1,7 +1,7 @@
 using Business.Domains;
 using Database;
 using Microsoft.AspNetCore.Mvc;
-using StoreSite.Models;
+using StoreSite.ViewModels;
 
 namespace StoreSite.Controllers;
 

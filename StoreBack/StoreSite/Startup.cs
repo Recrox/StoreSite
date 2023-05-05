@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
 namespace StoreSite;
@@ -45,19 +46,51 @@ public class Startup
             });
         });
 
-        services.AddSwaggerGen(c =>
+        services.AddSwaggerGen(options =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "VotreApplication", Version = "v1" });
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "VotreApplication", Version = "v1" });
+            AddSecurityDefinition(options);
+            AddSecurityRequirement(options);
         });
 
         ConfigJWT(services);
 
-        //services.AddAutoMapper(config =>
-        //{
-        //    config.CreateMap<WeatherForecastSuchParam, Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam>().ReverseMap();
-        //    config.CreateMap<Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam, Technocite.Irm.Weather.Core.Models.WeatherForecastSuchParam>();
+        services.AddAutoMapper(config =>
+        {
+            config.CreateMap<WeatherForecastSuchParam, Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam>().ReverseMap();
+            config.CreateMap<Technocite.Irm.Weather.Site.ViewModels.WeatherForecastSuchParam, Technocite.Irm.Weather.Core.Models.WeatherForecastSuchParam>();
+        });
+    }
 
-        //});
+    private static void AddSecurityRequirement(SwaggerGenOptions options)
+    {
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = JwtBearerDefaults.AuthenticationScheme,
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
+    }
+
+    private static void AddSecurityDefinition(SwaggerGenOptions options)
+    {
+        options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+        {
+            Scheme = JwtBearerDefaults.AuthenticationScheme,
+            BearerFormat = "JWT",
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Description = "Bearer Authentification with JWT Token",
+            Type = SecuritySchemeType.Http
+        });
     }
 
     private void ConfigJWT(IServiceCollection services)
