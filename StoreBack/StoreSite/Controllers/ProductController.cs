@@ -16,7 +16,7 @@ public class ProductController : ControllerBase
         this.productDomain = productDomain;
     }
 
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetAllAsync()
     {
@@ -60,7 +60,7 @@ public class ProductController : ControllerBase
         string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "Database", "Images", "i102005-chocolat-nu.webp");
 
         byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath); // lit les octets de l'image
-        var file = File(imageBytes, "image/webp");// renvoie l'image en tant que réponse HTTP
+        var file = this.File(imageBytes, "image/webp");// renvoie l'image en tant que réponse HTTP
         return this.Ok(file);
     }
 }

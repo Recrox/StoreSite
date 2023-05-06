@@ -10,15 +10,10 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent {
   listProduct: Product[] = [];
-  pagesListe: number = 1;
-  pagesTable: number = 1;
+  pagesListe: number = 0;
+  pagesTable: number = 0;
 
   constructor(private productService: ProductsService) {}
-  newProduct: Product = {
-    id: 0,
-    name: 'newProductName',
-    description: 'newDescriptionName',
-  };
 
   removeProduct(id: number) {
     this.productService.removeProduct(id,this.listProduct);
@@ -29,11 +24,19 @@ export class ProductsComponent {
 
   detailsProduct(id: number) {}
 
-  async ngOnInit() {
-    const response = await GetAll();
-    const data = await response.json();
-    console.log(data);
-    this.listProduct = data;
+  ngOnInit() {
+    this.getProduct();
+  }
+
+  private getProduct() {
+    this.productService.getProducts().subscribe(
+      products => {
+        this.listProduct = products;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
 

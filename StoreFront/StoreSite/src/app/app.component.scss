@@ -1,12 +1,9 @@
 .container {
 
+
     h1 {
         background-color: var(--color-primary);
         text-align: center;
         font-size: 5rem;
-    }
-
-    router-outlet+* {
-        margin: center;
     }
 }

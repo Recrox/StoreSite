@@ -13,6 +13,10 @@ namespace StoreSite;
 
 public class Startup
 {
+    private const string secretKeyPath = "Jwt:SecretKey";
+    private const string issuerPath = "Jwt:Issuer";
+    private const string audiencePath = "Jwt:Audience";
+
     public IConfiguration Configuration { get; }
 
     public Startup(IConfiguration configuration)
@@ -96,7 +100,7 @@ public class Startup
     private void ConfigJWT(IServiceCollection services)
     {
         // Récupération de la clé secrète depuis la configuration
-        string secretKey = Configuration["Jwt:SecretKey"];
+        string secretKey = this.Configuration[secretKeyPath] ?? throw new KeyNotFoundException("don't find the secretKey in the json ");
 
         // Ajout du middleware d'authentification JWT
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -108,8 +112,8 @@ public class Startup
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    ValidAudience = Configuration["Jwt:Audience"],
+                    ValidIssuer = Configuration[issuerPath],
+                    ValidAudience = Configuration[audiencePath],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
                 };
             });

@@ -1,0 +1,11 @@
+{
+  "name": "storeback",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "dotnet run --project StoreSite/StoreSite.csproj"
+  },
+  "author": "",
+  "license": "ISC"
+}

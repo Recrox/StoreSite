@@ -11,19 +11,27 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductFormComponent {
   constructor(private productService: ProductsService) {}
 
-  onSubmit(form: NgForm) {
-    console.log(form);
-    console.log('yo la form?');
-    this.addProduct();
-  }
-
   newProduct: Product = {
     id: 0,
     name: 'newProductName',
     description: 'newDescriptionName',
+    price:10,
   };
 
   addProduct() {
-    this.productService.addProduct(this.newProduct);
+    this.productService.addProduct(this.newProduct).subscribe(
+      newProduct => {
+        console.log(`Product ${newProduct.id} added successfully.`);
+        // Gérer la réponse ici
+      },
+      error => {
+        console.log(`Error adding product: ${error}`);
+        // Gérer l'erreur ici
+      }
+    );
+  }
+
+  onFileSelected(event: any) {
+    // Sélectionner le fichier
   }
 }

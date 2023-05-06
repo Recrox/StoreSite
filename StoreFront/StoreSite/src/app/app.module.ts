@@ -14,6 +14,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [AppComponent, ProductsComponent, ProductFormComponent, PageNotFoundComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -22,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    // NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
