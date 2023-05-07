@@ -1,0 +1,11 @@
+{
+  "name": "storesite",
+  "version": "1.0.0",
+  "description": "un site d'entrainement pour coder un site web",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd .\\StoreBack\\ && npm run dev\"       \"cd .\\StoreFront\\StoreSite && npm run dev\""
+  },
+  "author": "",
+  "license": "ISC"
+}

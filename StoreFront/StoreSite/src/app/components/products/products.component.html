@@ -4,7 +4,7 @@
     <li
       *ngFor="
         let product of this.listProduct
-          | paginate : { itemsPerPage: 4, currentPage: pagesListe }
+          | paginate : { itemsPerPage: 5, currentPage: pagesListe }
       "
     >
       {{ product.id }}
@@ -31,7 +31,7 @@
       <tr
         *ngFor="
           let product of this.listProduct
-            | paginate : { itemsPerPage: 2, currentPage: pagesTable }
+            | paginate : { itemsPerPage: 5, currentPage: pagesListe }
         "
       >
         <td>{{ product.id }}</td>
@@ -40,6 +40,6 @@
       </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="pagesTable = $event"></pagination-controls>
+  <pagination-controls (pageChange)="pagesListe = $event"></pagination-controls>
 </div>
 

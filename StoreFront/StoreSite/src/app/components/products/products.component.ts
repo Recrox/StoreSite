@@ -11,18 +11,19 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductsComponent {
   listProduct: Product[] = [];
   pagesListe: number = 0;
-  pagesTable: number = 0;
 
   constructor(private productService: ProductsService) {}
 
-  removeProduct(id: number) {
-    this.productService.removeProduct(id,this.listProduct);
-    this.listProduct = this.listProduct.filter((p) => p.id !== id);
+  removeProduct(productId: number) {
+    this.productService.removeProduct(productId);
+    this.listProduct = this.listProduct.filter((p) => p.id !== productId);
   }
 
-  editProduct(id: number) {}
+  editProduct(productId: number) {}
 
-  detailsProduct(id: number) {}
+  detailsProduct(productId: number) {
+    this.productService.getProduct(productId);
+  }
 
   ngOnInit() {
     this.getProduct();
@@ -36,10 +37,6 @@ export class ProductsComponent {
       error => {
         console.log(error);
       }
-    );
+    );;
   }
-}
-
-async function GetAll() {
-  return await fetch('https://localhost:7007/Product/GetAll');
 }
