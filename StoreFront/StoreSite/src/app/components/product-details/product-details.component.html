@@ -1,1 +1,7 @@
-<p>product-details works!</p>
+<div class="product-details">
+    <h1>{{ product.name }}</h1>
+    <img *ngIf="product.image" [src]="getImageUrl()" alt="Product Image" />
+    <p>Description {{ product.description }}</p>
+    <h2>Price: {{ product.price }} EUR</h2>
+</div>
+  

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import Product from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -11,7 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductFormComponent {
   constructor(private productService: ProductsService) {}
 
-  newProduct: Product = {
+  product: Product = {
     id: 0,
     name: 'newProductName',
     description: 'newDescriptionName',
@@ -20,11 +21,11 @@ export class ProductFormComponent {
   };
 
   addProduct() {
-    if (this.newProduct.id === 0) {//Create
-      this.productService.addProduct(this.newProduct);
+    if (this.product.id === 0) {//Create
+      this.productService.addProduct(this.product);
     }
     else{//Update
-      this.productService.updateProduct(this.newProduct);
+      this.productService.updateProduct(this.product);
     }
 
   }

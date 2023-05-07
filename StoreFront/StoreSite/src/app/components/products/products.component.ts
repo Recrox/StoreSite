@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import Product from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -12,7 +13,7 @@ export class ProductsComponent {
   listProduct: Product[] = [];
   pagesListe: number = 0;
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService,private router: Router) {}
 
   ngOnInit() {
     this.getProduct();
@@ -26,7 +27,7 @@ export class ProductsComponent {
   editProduct(productId: number) {}
 
   detailsProduct(productId: number) {
-    this.productService.getProduct(productId);
+    this.router.navigate(['/app-product-details'], { queryParams: { id: productId } });
   }
 
   
