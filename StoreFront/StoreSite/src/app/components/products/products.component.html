@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Liste:</h2>
+  <!-- <h2>Liste:</h2>
   <ul>
     <li
       *ngFor="
@@ -15,16 +15,18 @@
       <button (click)="detailsProduct(product.id)">Details</button>
     </li>
   </ul>
-  <!-- npm install ngx-pagination -->
-  <pagination-controls (pageChange)="pagesListe = $event"></pagination-controls>
+  <pagination-controls (pageChange)="pagesListe = $event"></pagination-controls> -->
 
-  <h2>Tableau:</h2>
+  <h2>Table of Products:</h2>
   <table>
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +36,16 @@
             | paginate : { itemsPerPage: 5, currentPage: pagesListe }
         "
       >
-        <td>{{ product.id }}</td>
+        <td>{{ product.id }} </td>
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.image }}</td>
+        <td>
+          <button (click)="removeProduct(product.id)">Supprimer</button>
+          <button (click)="editProduct(product.id)">Modifier</button>
+          <button (click)="detailsProduct(product.id)">Details</button>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -14,6 +14,10 @@ export class ProductsComponent {
 
   constructor(private productService: ProductsService) {}
 
+  ngOnInit() {
+    this.getProduct();
+  }
+  
   removeProduct(productId: number) {
     this.productService.removeProduct(productId);
     this.listProduct = this.listProduct.filter((p) => p.id !== productId);
@@ -25,9 +29,7 @@ export class ProductsComponent {
     this.productService.getProduct(productId);
   }
 
-  ngOnInit() {
-    this.getProduct();
-  }
+  
 
   private getProduct() {
     this.productService.getProducts().subscribe(

@@ -16,22 +16,16 @@ export class ProductFormComponent {
     name: 'newProductName',
     description: 'newDescriptionName',
     price:10,
+    image:null,
   };
 
   addProduct() {
-    this.productService.addProduct(this.newProduct).subscribe(
-      newProduct => {
-        console.log(`Product ${newProduct.id} added successfully.`);
-        // Gérer la réponse ici
-      },
-      error => {
-        console.log(`Error adding product: ${error}`);
-        // Gérer l'erreur ici
-      }
-    );
+    this.productService.addProduct(this.newProduct);
   }
 
   onFileSelected(event: any) {
     // Sélectionner le fichier
+    console.log(event);
+    
   }
 }

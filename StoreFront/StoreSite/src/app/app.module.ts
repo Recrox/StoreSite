@@ -13,11 +13,12 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, ProductsComponent, ProductFormComponent, PageNotFoundComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, ProductsComponent, ProductFormComponent, PageNotFoundComponent, HeaderComponent, FooterComponent, ProductDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

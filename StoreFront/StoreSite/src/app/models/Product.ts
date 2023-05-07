@@ -1,7 +1,7 @@
 export default interface Product {
     id: number;
     name: string;
-    description: string;
     price: number;
-    
+    description: string|null;
+    image:Uint8Array|null;
   }
