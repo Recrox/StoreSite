@@ -19,6 +19,8 @@ public class ProductRepository : IProductRepository
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
         };
         await this.storeContext.Products.AddAsync(productToAdd);
         await this.storeContext.SaveChangesAsync();
@@ -33,16 +35,49 @@ public class ProductRepository : IProductRepository
             Id = p.Id,
             Name = p.Name,
             Description = p.Description,
-            ImageUrl= p.ImageUrl,
+            Price = p.Price,
+            ImageUrl = p.ImageUrl,
         });
 
         return productsToGet;
+    }
+
+    public async Task<Product> GetAsync(int id)
+    {
+        var product = await this.storeContext.Products.FindAsync(id);
+
+        if (product is null)
+            throw new KeyNotFoundException();
+
+        var productToGet = new Product
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
+        };
+        return productToGet;
     }
 
     public async Task RemoveAsync(int id)
     {
         var productToRemove = new Database.Models.Product { Id = id };
         this.storeContext.Remove(productToRemove);
+        await this.storeContext.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(Product product)
+    {
+        var productToUpdtate = new Database.Models.Product
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
+        };
+        this.storeContext.Products.Update(productToUpdtate);
         await this.storeContext.SaveChangesAsync();
     }
 }

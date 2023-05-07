@@ -1,5 +1,5 @@
 using Business.Domains;
-using Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreSite.ViewModels;
 
@@ -46,6 +46,7 @@ public class OrderController : ControllerBase
         return this.Ok(orderToAdd);
     }
 
+    [Authorize]
     [HttpDelete]
     public async Task<ActionResult> RemoveAsync(int id)
     {

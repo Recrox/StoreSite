@@ -20,7 +20,13 @@ export class ProductFormComponent {
   };
 
   addProduct() {
-    this.productService.addProduct(this.newProduct);
+    if (this.newProduct.id === 0) {//Create
+      this.productService.addProduct(this.newProduct);
+    }
+    else{//Update
+      this.productService.updateProduct(this.newProduct);
+    }
+
   }
 
   onFileSelected(event: any) {

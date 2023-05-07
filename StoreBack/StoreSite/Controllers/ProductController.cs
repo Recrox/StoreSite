@@ -26,9 +26,25 @@ public class ProductController : ControllerBase
             Id = p.Id,
             Name = p.Name,
             Description = p.Description,
+            Price = p.Price,
             ImageUrl = p.ImageUrl,
         });
 
+        return this.Ok(productToGet);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<Product>> GetAsync(int id)
+    {
+        var product = await productDomain.GetAsync(id);
+        var productToGet = new Product
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
+        };
         return this.Ok(productToGet);
     }
 
@@ -40,6 +56,8 @@ public class ProductController : ControllerBase
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
         };
         await this.productDomain.AddAsync(productToAdd);
 
@@ -51,6 +69,22 @@ public class ProductController : ControllerBase
     {
         await this.productDomain.RemoveAsync(id);
         return this.Ok();
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> UpdateAsync(Product product)
+    {
+        var productToUpdtate = new Core.Models.Product
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
+        };
+
+        await this.productDomain.UpdateAsync(productToUpdtate);
+        return this.Ok(productToUpdtate);
     }
 
     [HttpGet]

@@ -22,8 +22,18 @@ public class ProductDomain : IProductDomain
         return await this.productRepository.GetAllAsync();
     }
 
+    public async Task<Product> GetAsync(int id)
+    {
+        return await this.productRepository.GetAsync(id);
+    }
+
     public async Task RemoveAsync(int id)
     {
         await this.productRepository.RemoveAsync(id);
+    }
+
+    public async Task UpdateAsync(Product product)
+    {
+        await this.productRepository.UpdateAsync(product);
     }
 }
